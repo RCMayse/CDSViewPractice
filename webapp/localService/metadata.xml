@@ -1,0 +1,23 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://fidwd.valero.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZCDS_ODATA_VIEW_CDS" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="SPFLIType" sap:content-version="1">
+				<Key><PropertyRef Name="CARRID"/><PropertyRef Name="CONNID"/></Key><Property Name="CARRID" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline"/><Property Name="CONNID" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Connection Number"/><Property Name="COUNTRYFR" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country Key"/><Property Name="CITYFROM" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Depart. city"/><Property Name="AIRPFROM" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Departure airport"/><Property Name="COUNTRYTO" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country Key"/><Property Name="CITYTO" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Arrival city"/><Property Name="AIRPTO" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Destination airport"/><Property Name="FLTIME" Type="Edm.Int32" sap:label="Flight time"/><Property Name="DEPTIME" Type="Edm.Time" Precision="0" sap:label="Departure time"/><Property Name="ARRTIME" Type="Edm.Time" Precision="0" sap:label="Arrival Time"/><Property Name="DISTANCE" Type="Edm.Decimal" Precision="9" Scale="4" sap:unit="DISTID" sap:label="Distance"/><Property Name="DISTID" Type="Edm.String" MaxLength="3" sap:label="Distance in" sap:semantics="unit-of-measure"/><Property Name="FLTYPE" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Charter flt"/><Property Name="PERIOD" Type="Edm.Byte" sap:label="n day(s) later"/></EntityType>
+			<EntityType Name="ZCDS_ODATA_VIEWType" sap:label="CDS view with OData Service - &gt;&gt; FIORI App" sap:content-version="1">
+				<Key><PropertyRef Name="carrid"/></Key><Property Name="carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline"
+					sap:quickinfo="Airline Code"/><NavigationProperty Name="to_flights" Relationship="ZCDS_ODATA_VIEW_CDS.assoc_FD3975C143E7AA633A2D3EF43CE133AB"
+					FromRole="FromRole_assoc_FD3975C143E7AA633A2D3EF43CE133AB" ToRole="ToRole_assoc_FD3975C143E7AA633A2D3EF43CE133AB"/></EntityType>
+			<Association Name="assoc_FD3975C143E7AA633A2D3EF43CE133AB" sap:content-version="1"><End Type="ZCDS_ODATA_VIEW_CDS.ZCDS_ODATA_VIEWType" Multiplicity="1" Role="FromRole_assoc_FD3975C143E7AA633A2D3EF43CE133AB"/><End Type="ZCDS_ODATA_VIEW_CDS.SPFLIType" Multiplicity="0..1" Role="ToRole_assoc_FD3975C143E7AA633A2D3EF43CE133AB"/></Association>
+			<EntityContainer Name="ZCDS_ODATA_VIEW_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="SPFLI" EntityType="ZCDS_ODATA_VIEW_CDS.SPFLIType" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:content-version="1"/><EntitySet Name="ZCDS_ODATA_VIEW" EntityType="ZCDS_ODATA_VIEW_CDS.ZCDS_ODATA_VIEWType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_FD3975C143E7AA633A2D3EF43CE133AB" Association="ZCDS_ODATA_VIEW_CDS.assoc_FD3975C143E7AA633A2D3EF43CE133AB"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZCDS_ODATA_VIEW" Role="FromRole_assoc_FD3975C143E7AA633A2D3EF43CE133AB"/><End EntitySet="SPFLI" Role="ToRole_assoc_FD3975C143E7AA633A2D3EF43CE133AB"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://fidwd.valero.com:443/sap/opu/odata/sap/ZCDS_ODATA_VIEW_CDS/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://fidwd.valero.com:443/sap/opu/odata/sap/ZCDS_ODATA_VIEW_CDS/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
